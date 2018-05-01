@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TitledPane fx:id="titledPane" animated="false" collapsible="false" maxHeight="380.0" maxWidth="575.0" minHeight="380.0" minWidth="575.0" onMouseEntered="#onEnter" onMouseExited="#onExit" prefHeight="380.0" prefWidth="575.0" text="Ticket" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tickethandler.TicketEmptyController">
+   <content>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Assign">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="316.0" prefWidth="554.0">
+                     <children>
+                        <ListView id="categoryList" fx:id="categoryList" layoutX="15.0" layoutY="15.0" prefHeight="285.0" prefWidth="160.0" />
+                        <TextArea id="readCommentArea" fx:id="readCommentArea" editable="false" layoutX="180.0" layoutY="15.0" prefHeight="194.0" prefWidth="379.0" wrapText="true" />
+                        <Button id="assignButton" fx:id="assignButton" layoutX="411.0" layoutY="264.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="148.0" text="Assign" />
+                        <TextArea id="writeCommentArea" fx:id="writeCommentArea" layoutX="180.0" layoutY="212.0" prefHeight="46.0" prefWidth="379.0" promptText="Add a comment..." wrapText="true" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Tasks">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox layoutX="15.0" layoutY="15.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="495.0" text="Fix Item (default) : 30 m" />
+                        <Button layoutX="15.0" layoutY="45.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="+" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </content>
+   <!--
+   <padding>
+      <Insets left="15.0" top="15.0" />
+   </padding>-->
+</TitledPane>

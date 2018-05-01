@@ -1,0 +1,49 @@
+        // ----- TEST FOR NOT LOADED IN FXML ----- //
+        // This code should be put under initialize method for Ticket
+        /*
+        // Loads the Ticket titledPane to the main area anchorPane
+        TitledPane newLoadedPane;
+        try {
+            newLoadedPane = FXMLLoader.load(getClass().getResource("Ticket.fxml"));
+            // newLoadedPane.setTranslateX(50);
+            // newLoadedPane.setTranslateY(50);
+            ticketPane.getChildren().add(newLoadedPane);
+            
+            // ----- EXAMPLE OF TRANSITIONS -----
+            // ----- Test of FadeTransition -----
+            FadeTransition ft = new FadeTransition(Duration.millis(2000), newLoadedPane);
+            ft.setFromValue(0);
+            ft.setToValue(1);
+            ft.play(); 
+            // ----- Test of TranslateTransition -----
+            newLoadedPane.setTranslateX(-TICKET_PANE_WIDTH);
+            TranslateTransition tt = new TranslateTransition(Duration.millis(2000), newLoadedPane);
+            tt.setByX(TICKET_PANE_WIDTH);
+            // tt.setCycleCount();
+            tt.setAutoReverse(true);
+            tt.play();
+            // ----- /EXAMPLE OF TRANSITIONS -----
+            
+            // categoryListView.setItems(categories);
+            
+        } catch (IOException ex) {
+            System.out.println("Ticket.fxml TitlePane could not be loaded");
+            ex.printStackTrace();
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        // ----- Example of loading and positioning another Ticket titledPane -----
+        TitledPane newLoadedPane2;
+        try {
+            newLoadedPane2 = FXMLLoader.load(getClass().getResource("Ticket.fxml"));
+            newLoadedPane2.setTranslateX(TICKET_PANE_WIDTH);
+            newLoadedPane2.setTranslateY(TICKET_PANE_HEIGHT);
+            ticketPane.getChildren().add(newLoadedPane2);
+        } catch (IOException ex) {
+            System.out.println("Ticket.fxml TitlePane could not be loaded");
+            ex.printStackTrace();
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+        // ----- /TEST FOR NOT LOADED IN FXML ----- //

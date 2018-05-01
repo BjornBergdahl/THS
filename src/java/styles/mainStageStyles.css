@@ -1,0 +1,43 @@
+/*
+#ticketPane {
+    -fx-background-color: #F1F1F1;
+}
+
+.tab-pane *.tab-header-background {
+    -fx-background-color: #5B9BD5;
+    -fx-effect: innershadow(two-pass-box , rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);
+}
+
+.tab-pane {
+    -fx-tab-min-width:100px;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+    -fx-border-radius: 11 11 0 0;
+    -fx-opacity: 1;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #e6e6e6;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #F1F1F1;
+}
+
+.tab:disabled {
+    -fx-background-color: red;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #000;
+    -fx-font-size: 12px;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #000;
+}
+*/

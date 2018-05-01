@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TitledPane fx:id="titledPane" animated="false" collapsible="false" maxHeight="380.0" maxWidth="575.0" minHeight="380.0" minWidth="575.0" prefHeight="380.0" prefWidth="575.0" stylesheets="@../styles/ticketStyles.css" text="Ticket" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tickethandler.TicketController">
+   <content>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Assign">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="316.0" prefWidth="554.0">
+                     <children>
+                        <ListView id="categoryList" fx:id="categoryList" layoutX="15.0" layoutY="15.0" prefHeight="300.0" prefWidth="160.0" />
+                        <TextArea id="readCommentArea" fx:id="readCommentArea" editable="false" layoutX="180.0" layoutY="15.0" prefHeight="194.0" prefWidth="379.0" wrapText="true" />
+                        <Button id="assignButton" fx:id="assignButton" layoutX="411.0" layoutY="280.0" mnemonicParsing="false" onAction="#assignButtonHandle" prefHeight="34.0" prefWidth="148.0" text="Assign" />
+                        <TextArea id="writeCommentArea" fx:id="writeCommentArea" layoutX="180.0" layoutY="212.0" prefHeight="60.0" prefWidth="379.0" promptText="Add a comment..." wrapText="true" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Tasks">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox layoutX="15.0" layoutY="36.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="197.0" text="Task name goes here" />
+                        <Button id="removeTaskButton" layoutX="526.0" layoutY="35.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" />
+                        <TextField layoutX="370.0" layoutY="39.0" prefHeight="25.0" prefWidth="40.0" />
+                        <TextField layoutX="436.0" layoutY="39.0" prefHeight="25.0" prefWidth="40.0" />
+                        <Text layoutX="415.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="h" />
+                        <Text layoutX="480.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="min" />
+                        <Text layoutX="38.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task" />
+                        <Text layoutX="370.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actual Time" />
+                        <Text layoutX="221.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Budgeted Time" />
+                        <Text layoutX="331.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="min" />
+                        <Text layoutX="266.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="h" />
+                        <TextField layoutX="287.0" layoutY="39.0" prefHeight="25.0" prefWidth="40.0" />
+                        <TextField layoutX="221.0" layoutY="39.0" prefHeight="25.0" prefWidth="40.0" />
+                        <Button id="addTaskButton" fx:id="addTaskButton" layoutX="236.0" layoutY="271.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" text="Add Task" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </content>
+   <!--
+   <padding>
+      <Insets left="15.0" top="15.0" />
+   </padding>-->
+</TitledPane>

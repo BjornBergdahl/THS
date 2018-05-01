@@ -1,0 +1,7 @@
+#addTaskButton {
+    -fx-graphic: url("../resources/plus.png");
+}
+
+#removeTaskButton {
+    -fx-graphic: url("../resources/minus.png");
+}
