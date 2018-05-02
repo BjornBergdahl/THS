@@ -22,4 +22,5 @@ public class THSManagedBean {
     public THSManagedBean() {
     }
     
+    
 }
