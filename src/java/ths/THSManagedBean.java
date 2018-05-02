@@ -5,6 +5,7 @@
  */
 package ths;
 
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -20,7 +21,10 @@ public class THSManagedBean {
      * Creates a new instance of THSManagedBean
      */
     public THSManagedBean() {
+        TicketsHandler th = new TicketsHandler();
+        th.readTickets("getAllTickets()");
+        ArrayList<Ticket> tickets = th.getTickets();
     }
-    
+
     
 }
