@@ -124,8 +124,8 @@ public class Ticket {
             System.out.println(e.getMessage( ));
         }      
     }
-    public void addTask (Ticket tkt, String name, String text, int timeBudget, int timeSpent) { //both write and add, used to add new and change existing tasks
-        String SQLCommand= "addTask("+this.tktNo+", '"+name+"', '"+text+"', '"+timeBudget+"', '"+timeSpent+"')";  //silly line '"+ !
+    public void addTask (Ticket tkt, String name,  int timeBudget, int timeSpent) { //both write and add, used to add new and change existing tasks
+        String SQLCommand= "addTask("+this.tktNo+", '"+name+"', '"+timeBudget+"', '"+timeSpent+"')";  //silly line '"+ !
         try{
             DbConnection.runSp(SQLCommand);
         }
@@ -145,7 +145,7 @@ public class Ticket {
                 task.setTaskNo(results.getInt("tskNo"));
                 task.setTktNo(results.getInt("tktNoTsk"));
                 task.setName(results.getString("name"));
-                task.setText(results.getString("text"));      
+                    
                 task.setTimeBudgetMinutes(results.getInt("timeBudgetMinutes")); 
                 task.setTimeSpentMinutes(results.getInt("timeSpentMinutes")); 
                 tasks.add(task);

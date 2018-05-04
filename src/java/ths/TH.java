@@ -64,7 +64,6 @@ public class TH {
                 System.out.println("-----Tasks-----");
                 System.out.println(tsk.getTaskNo());
                 System.out.println(tsk.getName());
-                System.out.println(tsk.getText());
                 System.out.println(tsk.getTimeBudgetMinutes());
                 System.out.println(tsk.getTimeSpentMinutes());
                 System.out.println(tsk.getTktNoTsk());
@@ -82,7 +81,7 @@ public class TH {
         ticket.setStatus("ASSIGNED");
 // adds all comments for every run...
 //        ticket.addComment("New variables confound me, heading for infinity?");
-        ticket.addTask(ticket, "Work todo", "Lots of work, testing the updateTicket", 30, 27);
+        ticket.addTask(ticket, "Work todo", 30, 27);
         th.updateTicket(ticket);
         // check results in mydb
       

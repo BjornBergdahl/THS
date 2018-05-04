@@ -65,7 +65,7 @@ public class TicketsHandler {
     // add for adding new task (INSERT)
     public void addTask(int tktNo, String name, String text, int timeBudget, int timeSpent) {
         Ticket ticket = tickets.get(tktNo-1); //Ticket no 1 is placed in index 0 in ArrayList
-        ticket.addTask(ticket, name, text, timeBudget, timeSpent);        
+        ticket.addTask(ticket, name, timeBudget, timeSpent);        
     }
     
     //handles writing of whole Ticket in database. Updates category, status and comments (tasks handled separatly)
@@ -84,7 +84,7 @@ public class TicketsHandler {
                 }
             }
             for (Task task : tasks)    {
-                String tsksql = "addTask("+tkt.getTktNo()+", '"+task.getName()+", '"+task.getText()+", "+task.getTimeBudgetMinutes()+", "+task.getTimeSpentMinutes()+")";                     
+                String tsksql = "addTask("+tkt.getTktNo()+", '"+task.getName()+"', "+task.getTimeBudgetMinutes()+", "+task.getTimeSpentMinutes()+")";                     
                 if (!(task.getTaskNo() > 0))  {
                     DbConnection.runSp(tsksql);  
                 }

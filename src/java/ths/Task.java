@@ -13,7 +13,7 @@ public class Task {
 
     private int timeBudgetMinutes;
     private int timeSpentMinutes;
-    private String text;
+    
     private int taskNo;
     private int tktNoTsk;
     private String name;
@@ -27,9 +27,6 @@ public class Task {
         this.timeBudgetMinutes = timeBudgetMinutes;
     }
 
-    void setText(String text) {
-        this.text = text;
-    }
 
     void setTaskNo(int taskNo) {
         this.taskNo = taskNo;
@@ -51,9 +48,6 @@ public class Task {
         return timeSpentMinutes;
     }
 
-    public String getText() {
-        return text;
-    }
 
     public int getTaskNo() {
         return taskNo;
