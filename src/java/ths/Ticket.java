@@ -22,37 +22,37 @@ public class Ticket {
     private String status; 
     private String category;
     //    Comments and Tasks belonging to the Ticket. 
-    private ArrayList<Comment> comments = new ArrayList<Comment>();
-    private ArrayList<Task> tasks = new ArrayList<Task>();
+    private ArrayList<Comment> comments = new ArrayList<>();
+    private ArrayList<Task> tasks = new ArrayList<>();
  
     
 
     
  //sets value in instance
-    void setTktNo(int tktNo) {
+   public void setTktNo(int tktNo) {
         this.tktNo=tktNo;
     }
     
 //sets value in instance
-    void setTktName(String name) {
+   public void setTktName(String name) {
         this.name= name;
     }
      
 //sets value in instance
-     void setPersonellNo(int pNo) {
+    public void setPersonellNo(int pNo) {
         this.personellNo = pNo;
     }
 
 //sets value in instance
-    void setstaffNo(int sNo) {
+    public void setstaffNo(int sNo) {
         this.processLeadNo = sNo;
     }
 //sets value in instance
-    void setStatus(String status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 //sets value in instance
-    void setCategory(String category) {
+    public void setCategory(String category) {
         this.category = category;
     }
     
@@ -103,7 +103,7 @@ public class Ticket {
     }
     //add new comment into database
     public void addComment (String text)    {
-        String sqlinput = "addComment("+this.tktNo+",'Bengan¤2018-05-22¤ "+text+"')";
+        String sqlinput = "addComment("+this.tktNo+",'"+text+"')";
         try{
                 
                 DbConnection.runSp(sqlinput);
@@ -115,8 +115,8 @@ public class Ticket {
 
     
     // refactored and soon completed, new mydb-SP added
-    public void writeTask (int tskNo, String name, String text, int timeBudget, int timeSpent) { //both write and add, used to add new and change existing tasks
-      String SQLCommand= "writeTask("+tskNo+", '"+name+"', '"+text+"', '"+timeBudget+"', '"+timeSpent+"')";  //silly line '"+ !
+    public void writeTask (int tskNo, String name, int timeBudget, int timeSpent) { //both write and add, used to add new and change existing tasks
+      String SQLCommand= "writeTask("+tskNo+", '"+name+"', '"+timeBudget+"', '"+timeSpent+"')";  //silly line '"+ !
         try{
             DbConnection.runSp(SQLCommand);
         }

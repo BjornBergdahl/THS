@@ -58,9 +58,9 @@ public class TicketsHandler {
         
     }
     // write for changing a task (UPDATE)
-    public void writeTask(int tktNo, int tskNo, String name, String text, int timeBudget, int timeSpent) {
+    public void writeTask(int tktNo, int tskNo, String name, int timeBudget, int timeSpent) {
         Ticket ticket = tickets.get(tktNo-1); //Ticket no 1 is placed in index 0 in ArrayList
-        ticket.writeTask(tskNo, name, text, timeBudget, timeSpent);       
+        ticket.writeTask(tskNo, name, timeBudget, timeSpent);       
     }
     // add for adding new task (INSERT)
     public void addTask(int tktNo, String name, String text, int timeBudget, int timeSpent) {
