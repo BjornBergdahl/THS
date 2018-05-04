@@ -20,8 +20,8 @@ import java.sql.SQLException;
 public class DbConnection {
     public static String HOST = "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false";
     public static String USERNAME = "root";
-     public static String PASSWORD = "Remington870E";
-//    public static String PASSWORD = "meiofasknasmisse123";
+    //public static String PASSWORD = "Remington870E";
+    public static String PASSWORD = "meiofasknasmisse123";
        
     public static ResultSet runSp(String sp) throws SQLException{
         Connection con = DriverManager.getConnection(HOST, USERNAME, PASSWORD);
