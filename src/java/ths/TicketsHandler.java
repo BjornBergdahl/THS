@@ -17,8 +17,12 @@ import java.util.ArrayList;
  */
 public class TicketsHandler {
     protected static ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-    
-    
+
+    /**
+     *List of personnel handling Tickets
+     */
+    protected static ArrayList<Personnel> personnel = new ArrayList<>();
+    protected static ArrayList<ProcessLead> processLead = new ArrayList<>();
     
   /**
     * reads String command that defines if all, unassigned or another 
@@ -51,22 +55,7 @@ public class TicketsHandler {
     }
     
     
-    // only add, no write method. comments only added, never changed. (INSERT)
-    public void addComment(int tktNo, String textInput) {
-        Ticket ticket = tickets.get(tktNo-1);   //Ticket no 1 is placed in index 0 in ArrayList
-        ticket.addComment(textInput);   
-        
-    }
-    // write for changing a task (UPDATE)
-    public void writeTask(int tktNo, int tskNo, String name, int timeBudget, int timeSpent) {
-        Ticket ticket = tickets.get(tktNo-1); //Ticket no 1 is placed in index 0 in ArrayList
-        ticket.writeTask(tskNo, name, timeBudget, timeSpent);       
-    }
-    // add for adding new task (INSERT)
-    public void addTask(int tktNo, String name, String text, int timeBudget, int timeSpent) {
-        Ticket ticket = tickets.get(tktNo-1); //Ticket no 1 is placed in index 0 in ArrayList
-        ticket.addTask(ticket, name, timeBudget, timeSpent);        
-    }
+
     
     //handles writing of whole Ticket in database. Updates category, status and comments (tasks handled separatly)
     public void updateTicket(Ticket tkt)   {    
@@ -77,17 +66,17 @@ public class TicketsHandler {
             DbConnection.runSp(catsql);
             String statsql = "setTicketStatus("+tkt.getTktNo()+", '"+tkt.getStatus()+"')";
             DbConnection.runSp(statsql);
+            //TODO refactor as Tasks below!
             for (Comment comment : comments)    {
                 String comsql = "addComment("+tkt.getTktNo()+", '"+comment.getText()+"')";                     
                 if (!(comment.getCommentNo()>0))  {                                                         //Hade vänt logiken fel, itererade in alla gamla inga nya kommentarer...
                     DbConnection.runSp(comsql);  
                 }
             }
+            tkt.deleteAllTasks();
             for (Task task : tasks)    {
-                String tsksql = "addTask("+tkt.getTktNo()+", '"+task.getName()+"', "+task.getTimeBudgetMinutes()+", "+task.getTimeSpentMinutes()+")";                     
-                if (!(task.getTaskNo() > 0))  {
-                    DbConnection.runSp(tsksql);  
-                }
+                tkt.addTask(task);
+                                
             }
             
             

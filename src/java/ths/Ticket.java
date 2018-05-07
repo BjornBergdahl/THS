@@ -114,8 +114,8 @@ public class Ticket {
     }
 
     
-    // refactored and soon completed, new mydb-SP added
-    public void writeTask (int tskNo, String name, int timeBudget, int timeSpent) { //both write and add, used to add new and change existing tasks
+    // refactored
+    public void writeTask (int tskNo, String name, int timeBudget, int timeSpent) { 
       String SQLCommand= "writeTask("+tskNo+", '"+name+"', '"+timeBudget+"', '"+timeSpent+"')";  //silly line '"+ !
         try{
             DbConnection.runSp(SQLCommand);
@@ -124,15 +124,27 @@ public class Ticket {
             System.out.println(e.getMessage( ));
         }      
     }
-    public void addTask (Ticket tkt, String name,  int timeBudget, int timeSpent) { //both write and add, used to add new and change existing tasks
-        String SQLCommand= "addTask("+this.tktNo+", '"+name+"', '"+timeBudget+"', '"+timeSpent+"')";  //silly line '"+ !
+    public void addTask (Task task) { //both write and add, used to add new and change existing tasks
+        String addCommand= "addTask("+this.tktNo+", '"+task.getName()+"', '"+task.getTimeBudgetMinutes()+"', '"+task.getTimeSpentMinutes()+"')";  //silly line '"+ !
         try{
-            DbConnection.runSp(SQLCommand);
+            DbConnection.runSp(addCommand);
         }
         catch (SQLException e) {
             System.out.println(e.getMessage( ));
         }      
     }
+    
+    public void deleteAllTasks()  {
+        String deleteTasks = "deleteAllTasks("+this.tktNo+")";
+                try{
+            DbConnection.runSp(deleteTasks);
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage( ));
+        }    
+        
+    }
+    
 //    reads the Tasks belonging to instance of Ticket from database
     public void readTasks() {
         

@@ -81,7 +81,7 @@ public class TH {
         ticket.setStatus("ASSIGNED");
 // adds all comments for every run...
 //        ticket.addComment("New variables confound me, heading for infinity?");
-        ticket.addTask(ticket, "Work todo", 30, 27);
+       
         th.updateTicket(ticket);
         // check results in mydb
       
