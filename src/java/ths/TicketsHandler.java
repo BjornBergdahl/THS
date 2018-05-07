@@ -73,10 +73,8 @@ public class TicketsHandler {
                     DbConnection.runSp(comsql);  
                 }
             }
-            tkt.deleteAllTasks();
             for (Task task : tasks)    {
                 tkt.addTask(task);
-                                
             }
             
             
