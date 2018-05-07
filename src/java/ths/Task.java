@@ -27,7 +27,6 @@ public class Task {
         this.timeBudgetMinutes = timeBudgetMinutes;
     }
 
-
     public void setTaskNo(int taskNo) {
         this.taskNo = taskNo;
     }
@@ -48,7 +47,6 @@ public class Task {
         return timeSpentMinutes;
     }
 
-
     public int getTaskNo() {
         return taskNo;
     }
@@ -60,7 +58,5 @@ public class Task {
     public String getName() {
         return name;
     }
-    
-    
     
 }
