@@ -23,20 +23,20 @@ public class Task {
         this.timeSpentMinutes = timeSpentMinutes;
     }
 
-    void setTimeBudgetMinutes(int timeBudgetMinutes) {
+    public void setTimeBudgetMinutes(int timeBudgetMinutes) {
         this.timeBudgetMinutes = timeBudgetMinutes;
     }
 
 
-    void setTaskNo(int taskNo) {
+    public void setTaskNo(int taskNo) {
         this.taskNo = taskNo;
     }
 
-    void setTktNo(int tktNoTsk) {
+    public void setTktNo(int tktNoTsk) {
         this.tktNoTsk= tktNoTsk;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
