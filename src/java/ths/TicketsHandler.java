@@ -54,9 +54,6 @@ public class TicketsHandler {
         }   
     }
     
-    
-
-    
     //handles writing of whole Ticket in database. Updates category, status and comments (tasks handled separatly)
     public void updateTicket(Ticket tkt)   {    
         ArrayList<Comment> comments = tkt.getComments();
