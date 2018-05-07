@@ -253,6 +253,12 @@ public class TicketController implements Initializable {
     
    // Handler for when assignButton is clicked
     public void assignButtonHandle() {
+        System.out.println("Assign clicked");
+        setTasks();
+        
+        // TODO: UNCOMMENT THIS!
+        
+        /*
         double offsetX = titledPane.getWidth() * 2;
         int duration = 1500;
         
@@ -266,7 +272,7 @@ public class TicketController implements Initializable {
         tt.setByX(-offsetX);
         tt.setAutoReverse(true);
         tt.setCycleCount(1);
-        tt.play();
+        tt.play();*/
     }
     
     // Sends the assigned ticket to database
@@ -282,7 +288,6 @@ public class TicketController implements Initializable {
         String formatted = df.format(today.getTime());
         System.out.println(formatted);
         
-        
         if (!newComment.equals("")) {
             ticket.addComment(account + "¤" + formatted + "¤" + newComment);
         }
@@ -296,6 +301,17 @@ public class TicketController implements Initializable {
         
         // Send updates to db
         th.updateTicket(ticket);
+    }
+    
+    private void setTasks() {
+        // Gets all dynamically generated task nodes in anchorPane
+        ObservableList<Node> nodes = anchorPane.getChildren();
+        for (Node node : nodes) {
+            Group group = (Group) node;
+            TextField tf = (TextField) group.getChildren().get(1);
+            String text = tf.getText();
+            System.out.println(text);
+        }
     }
     
     // Updates the New Tickets View
