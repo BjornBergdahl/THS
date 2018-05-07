@@ -43,6 +43,7 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import ths.Comment;
+import ths.Task;
 import ths.Ticket;
 import ths.TicketsHandler;
 
@@ -253,12 +254,6 @@ public class TicketController implements Initializable {
     
    // Handler for when assignButton is clicked
     public void assignButtonHandle() {
-        System.out.println("Assign clicked");
-        setTasks();
-        
-        // TODO: UNCOMMENT THIS!
-        
-        /*
         double offsetX = titledPane.getWidth() * 2;
         int duration = 1500;
         
@@ -272,7 +267,7 @@ public class TicketController implements Initializable {
         tt.setByX(-offsetX);
         tt.setAutoReverse(true);
         tt.setCycleCount(1);
-        tt.play();*/
+        tt.play();
     }
     
     // Sends the assigned ticket to database
@@ -299,19 +294,64 @@ public class TicketController implements Initializable {
         // Set ticket status to ASSIGNED
         ticket.setStatus("ASSIGNED");
         
+        // sets the tasks for the ticket
+        setTasks();
+        
         // Send updates to db
         th.updateTicket(ticket);
     }
     
+    // Helper method for setting all tasks to ticket before sending to db
     private void setTasks() {
+        // Deletes all tasks in ticket
+        ticket.deleteAllTasks();
+        
         // Gets all dynamically generated task nodes in anchorPane
         ObservableList<Node> nodes = anchorPane.getChildren();
+        
+        // For each "node row", add to task from fields accordingly,
+        // and give task to ticket
         for (Node node : nodes) {
+            // Cast the Node to a Group with all UI elements
             Group group = (Group) node;
-            TextField tf = (TextField) group.getChildren().get(1);
-            String text = tf.getText();
-            System.out.println(text);
+            
+            Task task = new Task();
+            
+            CheckBox cb = (CheckBox) group.getChildren().get(0);
+            TextField tfBugdetH = (TextField) group.getChildren().get(1);
+            TextField tfBugdetM = (TextField) group.getChildren().get(2);
+            TextField tfActualH = (TextField) group.getChildren().get(3);
+            TextField tfActualM = (TextField) group.getChildren().get(4);
+            
+            String budgetH = tfBugdetH.getText();
+            String budgetM = tfBugdetM.getText();
+            String actualH = tfActualH.getText();
+            String actualM = tfActualM.getText();
+            
+            int bugdetMinutes = inMinutes(budgetH, budgetM);
+            int actualMinutes = inMinutes(actualH, actualM);
+            
+            task.setName(cb.getText());
+            task.setTimeBudgetMinutes(bugdetMinutes);
+            task.setTimeSpentMinutes(actualMinutes);
+            
+            ticket.addTask(task);
         }
+    }
+    
+    // Scope method that converts hours and minutes to just minutes
+    private int inMinutes(String hours, String minutes) {
+        int totM = 0;
+        try {
+            int h = Integer.parseInt(hours);
+            int m = Integer.parseInt(minutes);
+            totM = 60 * h + m;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+       
+        return totM;
     }
     
     // Updates the New Tickets View
