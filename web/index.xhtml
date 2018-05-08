@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
@@ -28,18 +29,13 @@
       <div class="row">
         <div class="container border border-secondary rounded col-md-5 m-1">
           <div class="row">
-            <form class="col-lg-6 p-4">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Assign to personnel1</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </form>
+            <h:form>
+                <h:outputLabel>Assign to Personnel</h:outputLabel>
+                <h:selectOneMenu value="#{THSManagedBean.chosenPersonnel}" >
+                    <f:selectItems value="#{THSManagedBean.personnels}" />
+                </h:selectOneMenu>  
+            </h:form>    
+                
             <div class="col-lg-6 p-4">
               <div class="row">
                 <span class="invisible">Empty row</span>
