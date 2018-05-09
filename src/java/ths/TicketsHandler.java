@@ -9,26 +9,26 @@ package ths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.ejb.EJB;
 
 /**
  *
  * @author Björn
  * @author Andreas
  */
+@EJB
 public class TicketsHandler {
-    protected static ArrayList<Ticket> tickets = new ArrayList<Ticket>();
 
-    /**
-     *List of personnel handling Tickets
-     */
-    protected static ArrayList<Personnel> personnel = new ArrayList<>();
-    protected static ArrayList<ProcessLead> processLead = new ArrayList<>();
+
+    protected static ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+    protected static ArrayList<Personnel> personnels = new ArrayList<>();
+    protected static ArrayList<ProcessLead> processLeads = new ArrayList<>();
     
   /**
     * reads String command that defines if all, unassigned or another 
     * selection of tickets with all comments and tasks will be read into tickets
     */
-    public void readTickets(String command) {
+    public ArrayList<Ticket> readTickets(String command) {
         
         try{
 
@@ -52,7 +52,50 @@ public class TicketsHandler {
         catch (SQLException e) {
             System.out.println(e.getMessage( ));
         }   
+    return tickets;
     }
+    
+    public ArrayList<Personnel> readPersonnel() {
+            try{
+
+                ResultSet results = DbConnection.runSp("getPersonnel");
+
+            while (results.next())  {
+                Personnel peon = new Personnel();
+                peon.setStaffNo(results.getInt("staffNo"));
+                peon.setFirstName(results.getString("fName"));
+                peon.setLastName(results.getString("lName"));
+                peon.setCompetence(results.getString("competence"));
+                personnels.add(peon);
+                
+            }
+            results.close();
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage( ));
+        }  
+        return personnels;    
+    }
+
+        public ArrayList<ProcessLead> readProcessLead() {
+            try{
+
+                ResultSet results = DbConnection.runSp("getProcessLead");
+
+            while (results.next())  {
+                ProcessLead boss = new ProcessLead();
+                boss.setProcessLeadNo(results.getInt("processLeadNo"));
+                boss.setFirstName(results.getString("fName"));
+                boss.setLastName(results.getString("lName"));
+                processLeads.add(boss);
+            }
+            results.close();
+            }
+            catch (SQLException e) {
+                System.out.println(e.getMessage( ));
+            }  
+            return processLeads;
+        }
     
     //handles writing of whole Ticket in database. Updates category, status and comments (tasks handled separatly)
     public void updateTicket(Ticket tkt)   {    
@@ -97,13 +140,9 @@ public class TicketsHandler {
         tickets.clear();
     }
     
-    
-    
-    
-    
 
-
-    
+       
+     
     
     
 }

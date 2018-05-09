@@ -49,5 +49,26 @@ public class Personnel {
     public void setCompetence(String competence) {
         this.competence = competence;
     }
+
+    /**
+     * @param staffNo the staffNo to set
+     */
+    public void setStaffNo(int staffNo) {
+        this.staffNo = staffNo;
+    }
+
+    /**
+     * @param firstName the firstName to set
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * @param lastName the lastName to set
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
     
 }
