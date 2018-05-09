@@ -9,12 +9,14 @@ package ths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.ejb.EJB;
 
 /**
  *
  * @author Björn
  * @author Andreas
  */
+@EJB
 public class TicketsHandler {
 
 
@@ -63,7 +65,7 @@ public class TicketsHandler {
                 peon.setStaffNo(results.getInt("staffNo"));
                 peon.setFirstName(results.getString("fName"));
                 peon.setLastName(results.getString("lName"));
-                peon.setCompetence(results.getString("category"));
+                peon.setCompetence(results.getString("competence"));
                 personnels.add(peon);
                 
             }

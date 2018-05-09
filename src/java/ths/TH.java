@@ -79,6 +79,11 @@ public class TH {
         ticket.setCategory("NETWORK");
 
         ticket.setStatus("ASSIGNED");
+        ArrayList<Personnel> pers = th.readPersonnel();
+        ;
+        for (Personnel per : pers){
+            System.out.println(per.getFirstName());
+        }
 // adds all comments for every run...
 //        ticket.addComment("New variables confound me, heading for infinity?");
        

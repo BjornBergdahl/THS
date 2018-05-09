@@ -6,6 +6,8 @@
 package ths;
 
 import java.util.ArrayList;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -14,15 +16,24 @@ import javax.faces.bean.SessionScoped;
  *
  * @author Björn
  */
-@ManagedBean (name = "THSManagedBean" , eager = true)
+@ManagedBean (name = "THSMB" , eager = true)
 @SessionScoped
 public class THSManagedBean {
+        
+
+        
+        @EJB
         TicketsHandler th = new TicketsHandler();
+        ArrayList<Personnel> personnels;
+        @PostConstruct
+        public void init() {
+            personnels = th.readPersonnel();
+        }
+        
         Ticket ticket = new Ticket();
         private Personnel chosenPersonnel = new Personnel();
         ArrayList<Ticket> tickets = th.readTickets("getAllTickets()");
-        ArrayList<Personnel> personnels = th.readPersonnel();
-        ArrayList<ProcessLead> processLead = th.readProcessLead();
+        ArrayList<ProcessLead> processLeads = th.readProcessLead();
     /**
      * Creates a new instance of THSManagedBean
      */
@@ -40,13 +51,25 @@ public class THSManagedBean {
         return tickets;
     }
     
-    public ArrayList<Personnel> getPersonnels()  {
-        ArrayList<Personnel> personnels = th.readPersonnel();
-        return personnels;
+    public ArrayList<String> getPersonnels()  {
+        
+        ArrayList<String> lastNames = new ArrayList<>();
+        for (Personnel per : personnels)    {
+            lastNames.add(per.getLastName());
+            
+        }
+        return lastNames;
     }
     
+    /**
+     *
+     * @return list of ProcessLeaders
+     */
+    
+    
     public ArrayList<ProcessLead> getProcessLeads()  {
-        return processLead;
+        ArrayList<ProcessLead> processLeads = th.readProcessLead();
+        return processLeads;
     }
 
     /**
@@ -59,8 +82,9 @@ public class THSManagedBean {
     /**
      * @param chosenPersonnel the chosenPersonnel to set
      */
-    public void setChosenPersonnel(Personnel chosenPersonnel) {
-        this.chosenPersonnel = chosenPersonnel;
+    public void setChosenPersonnel(String lastName) {
+        System.out.println("--------------"+lastName+"-----------------");
+        //this.chosenPersonnel = chosenPersonnel;
     }
     
     
