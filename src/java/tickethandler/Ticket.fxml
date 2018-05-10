@@ -25,11 +25,8 @@
             </Tab>
             <Tab text="Tasks">
                <content>
-                  <!-- ScrollPane does not seem to work with dynamically generated content. It disables scroll.-->
-                  <!--<ScrollPane fitToHeight="True" maxHeight="300.0" vbarPolicy="ALWAYS">-->
                   <AnchorPane>    
                     <children>
-                      <!--Task-tab UI-->
                       <Text layoutX="38.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task" />
                       <Text layoutX="370.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actual Time" />
                       <Text layoutX="221.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Budgeted Time" />
@@ -38,14 +35,9 @@
                         <TextField fx:id="newTaskNameField" layoutX="160.0" layoutY="285.0" prefHeight="25.0" prefWidth="175.0" promptText="Task" onAction="#addTaskHandle" />
                     </children>
                   </AnchorPane>
-                 <!--</ScrollPane>-->
                </content>
             </Tab>
          </tabs>
       </TabPane>
    </content>
-   <!--
-   <padding>
-      <Insets left="15.0" top="15.0" />
-   </padding>-->
 </TitledPane>

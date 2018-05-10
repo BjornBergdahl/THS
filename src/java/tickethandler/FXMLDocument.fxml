@@ -36,13 +36,6 @@
                             <TableColumn prefWidth="200.0" text="Title">
                               <cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory>
                             </TableColumn>
-                            <!--
-                            <TableColumn prefWidth="90.0" text="Time Budget">
-                              <cellValueFactory><PropertyValueFactory property="?" /></cellValueFactory>
-                            </TableColumn>
-                            <TableColumn prefWidth="89.0" text="Time Spent">
-                              <cellValueFactory><PropertyValueFactory property="?" /></cellValueFactory>
-                            </TableColumn>-->
                             <TableColumn prefWidth="100.0" text="Process Lead No">
                               <cellValueFactory><PropertyValueFactory property="processLeadNo" /></cellValueFactory>
                             </TableColumn>
@@ -52,10 +45,6 @@
                             <TableColumn prefWidth="100.0" text="Status">
                               <cellValueFactory><PropertyValueFactory property="status" /></cellValueFactory>
                             </TableColumn>
-                            <!--
-                            <TableColumn prefWidth="397.0" text="Latest Comment" />
-                              <cellValueFactory><PropertyValueFactory property="?" /></cellValueFactory>
-                            </TableColumn>-->
                           </columns>
                         </TableView>
                      </children>

@@ -6,22 +6,15 @@
 package tickethandler;
 
 import javafx.scene.image.Image;
-import java.util.ArrayList;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import ths.Ticket;
-import ths.TicketsHandler;
 
 /**
  *
- * @author Andreas
+ * @author Andreas Kuoppa
  */
 public class Main extends Application {
     

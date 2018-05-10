@@ -35,8 +35,4 @@
          </tabs>
       </TabPane>
    </content>
-   <!--
-   <padding>
-      <Insets left="15.0" top="15.0" />
-   </padding>-->
 </TitledPane>
