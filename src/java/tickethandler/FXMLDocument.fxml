@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.cell.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory ?>
 
-<Pane maxHeight="800" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../styles/mainStageStyles.css" fx:controller="tickethandler.FXMLDocumentController">
+<Pane maxHeight="800" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../styles/mainStageStyles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tickethandler.FXMLDocumentController">
    <children>
       <TabPane maxHeight="800.0" maxWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -19,21 +21,41 @@
               </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Supervise Tickets">
+          <Tab text="Assigned Tickets">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="15.0" layoutY="15.0" prefHeight="745.0" prefWidth="1170.0">
+                        <TableView fx:id="table" layoutX="15.0" layoutY="15.0" prefHeight="745.0" prefWidth="1170.0">                            
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Ticket ID" />
-                              <TableColumn prefWidth="89.0" text="Category" />
-                            <TableColumn prefWidth="75.0" text="Title" />
-                              <TableColumn prefWidth="90.0" text="Time Budget" />
-                              <TableColumn prefWidth="89.0" text="Time Spent" />
-                              <TableColumn prefWidth="124.0" text="Process Lead" />
-                              <TableColumn prefWidth="144.0" text="Worker" />
-                              <TableColumn prefWidth="86.0" text="Status" />
-                              <TableColumn prefWidth="397.0" text="Latest Comment" />
+                            <TableColumn prefWidth="75.0" text="Ticket ID">
+                              <cellValueFactory><PropertyValueFactory property="tktNo" /></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn prefWidth="100.0" text="Category">
+                              <cellValueFactory><PropertyValueFactory property="category" /></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn prefWidth="200.0" text="Title">
+                              <cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory>
+                            </TableColumn>
+                            <!--
+                            <TableColumn prefWidth="90.0" text="Time Budget">
+                              <cellValueFactory><PropertyValueFactory property="?" /></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn prefWidth="89.0" text="Time Spent">
+                              <cellValueFactory><PropertyValueFactory property="?" /></cellValueFactory>
+                            </TableColumn>-->
+                            <TableColumn prefWidth="100.0" text="Process Lead No">
+                              <cellValueFactory><PropertyValueFactory property="processLeadNo" /></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn prefWidth="100.0" text="Personel No">
+                              <cellValueFactory><PropertyValueFactory property="personellNo" /></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn prefWidth="100.0" text="Status">
+                              <cellValueFactory><PropertyValueFactory property="status" /></cellValueFactory>
+                            </TableColumn>
+                            <!--
+                            <TableColumn prefWidth="397.0" text="Latest Comment" />
+                              <cellValueFactory><PropertyValueFactory property="?" /></cellValueFactory>
+                            </TableColumn>-->
                           </columns>
                         </TableView>
                      </children>
