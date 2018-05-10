@@ -38,29 +38,20 @@ import ths.TicketsHandler;
 
 /**
  *
- * @author Andreas
+ * @author Andreas Kuoppa
  */
 public class FXMLDocumentController implements Initializable {
     
     @FXML private Window dialog;
     @FXML private TicketController ticketController;
     
-    private final double TICKET_PANE_WIDTH = 590;
-    private final double TICKET_PANE_HEIGHT = 380;
-    
-    @FXML private Label label;
     @FXML private AnchorPane ticketPane;
     @FXML private ListView categoryListView;
     
     // FXML tags for accessing the Ticket TitledPanes
     @FXML private TitledPane ticket;
-    /*
-    @FXML private TitledPane ticket0;
-    @FXML private TitledPane ticket1;
-    @FXML private TitledPane ticket2;
-    @FXML private TitledPane ticket3;*/
     
-    private ArrayList<Ticket> tickets = new ArrayList<Ticket>();;
+    private ArrayList<Ticket> tickets = new ArrayList<>();;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -98,19 +89,7 @@ public class FXMLDocumentController implements Initializable {
         ticket.toFront();
     }
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-        // ticketController.setComments("mjau");
-    }
-    
-    public void test() {
-        ticket.setText("BLÄÄÄÄÄ");
-    }
-    
     public void movePane() {
-        //ticketPane.setTranslateX(100.0);
         double offsetX = 15.0;
         double offsetY = 15.0;
         int duration = 500;
@@ -125,7 +104,8 @@ public class FXMLDocumentController implements Initializable {
     
     public ArrayList<Ticket> loadTickets() {
         TicketsHandler th = new TicketsHandler();
-        // th.readTickets("getUnassignedTickets()");
         return th.getTickets();
     }
+    
+    
 }

@@ -16,10 +16,6 @@
                  <children>
                    <fx:include fx:id="ticket" layoutX="305" layoutY="205" source="Ticket.fxml" />
                  </children>
-                <!--<fx:include fx:id="ticket0" source="Ticket.fxml"/>
-                <fx:include fx:id="ticket1" source="Ticket.fxml" layoutX="590.0"/>
-                <fx:include fx:id="ticket2" source="Ticket.fxml" layoutY="380.0"/>
-                <fx:include fx:id="ticket3" source="Ticket.fxml" layoutX="590.0" layoutY="380.0"/>-->
               </AnchorPane>
             </content>
           </Tab>
