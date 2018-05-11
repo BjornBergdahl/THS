@@ -18,9 +18,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import ths.Ticket;
 import ths.TicketsHandler;
@@ -41,6 +47,20 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         drawPileTickets();
         updateTable();
+        
+        // Sets a doubleclick eventhandler for a row of the table
+        table.setRowFactory( tv -> {
+        TableRow<Ticket> row = new TableRow<>();
+        row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Ticket ticket = row.getItem();
+                    System.out.println("Doubleclick detected, row data: " + ticket);
+                    int tktNo = ticket.getTktNo();
+                    openTicket(tktNo);
+                }
+            });
+            return row ;
+        });
     }
     
     // Draws the tickets in the pile, i.e. all but the front ticket.
@@ -106,5 +126,28 @@ public class FXMLDocumentController implements Initializable {
         table.refresh();
         
         System.out.println("Table loaded with data");
+    }
+    
+    // Opens a ticket with a specific ticket number in a new window
+    private void openTicket (int ticketNumber){
+        
+        try {
+            TicketController tc = new TicketController(ticketNumber);
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ticket_1.fxml"));
+            loader.setController(tc);
+            Stage stage = new Stage();
+            Scene scene = new Scene((TitledPane) loader.load(), 575, 380);
+            stage.setScene(scene);
+            
+            stage.setResizable(false);
+            stage.getIcons().add(new Image("/resources/ths.png"));
+            stage.setTitle("Ticket Handling System");
+            
+            stage.show();
+        }
+        catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

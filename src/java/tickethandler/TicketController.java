@@ -14,6 +14,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.TranslateTransition;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -71,6 +73,20 @@ public class TicketController implements Initializable {
     
     Ticket ticket;  // The ticket on top of the pile that is going to be sent to db
     
+    private IntegerProperty initTktNo = new SimpleIntegerProperty();
+    // int initTktNo = 0;
+    
+    // Default constructor, DO NOT REMOVE!
+    public TicketController() {
+        
+    }
+    
+    // Parameter constructor, runs before initialize
+    // Caller should call this before initializing view
+    public TicketController(int tktNo) {
+        initTktNo.set(tktNo);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // ----- Initializes categoryList -----
@@ -85,13 +101,23 @@ public class TicketController implements Initializable {
         });
         // ----- /Initializes categoryList -----
         
-        // ----- Loads data from database and initializes comments -----
-        ArrayList<Ticket> ticketList = loadTickets();
-        ticket = ticketList.get(0);
+       // ----- Initializes the rest of the ticket data -----
+        if (initTktNo.get() == 0) {
+            ArrayList<Ticket> ticketList = loadTickets();
+            ticket = ticketList.get(0);  
+        }
+        else {
+            ArrayList<Ticket> ticketList = loadAssignedTickets();
+            for (int x = 0; x < ticketList.size(); x++) {
+                if (ticketList.get(x).getTktNo() == initTktNo.get()) {
+                    ticket = ticketList.get(x);
+                }
+            }
+        }
         ArrayList<Comment> comments = ticket.getComments();
         setTicketName(ticket);
         setComments(comments);
-        // ----- /Loads data from database and initializes comments -----
+        // ----- /Initializes the rest of the ticket data -----
         
         drawTaskUI();
     }
@@ -388,6 +414,13 @@ public class TicketController implements Initializable {
         return th.getTickets();
     }
     
+    public ArrayList<Ticket> loadAssignedTickets() {
+        TicketsHandler th = new TicketsHandler();
+        th.emptyTickets();
+        th.readTickets("getAssignedTickets()");   
+        return th.getTickets();
+    }
+    
     // Adds a limit for max number of characters of a Textfield
     // Based on answer on stackoverflow
     public static void addTextLimiter(final TextField tf, final int maxLength) {
@@ -397,5 +430,5 @@ public class TicketController implements Initializable {
             tf.setText(s);
         }
     });
-}
+    }
 }

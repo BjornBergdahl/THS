@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TitledPane fx:id="titledPane" fx:controller="tickethandler.TicketController" animated="false" collapsible="false" maxHeight="380.0" maxWidth="575.0" minHeight="380.0" minWidth="575.0" prefHeight="380.0" prefWidth="575.0" stylesheets="@../styles/ticketStyles.css" text="Ticket" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane fx:id="titledPane" animated="false" collapsible="false" maxHeight="380.0" maxWidth="575.0" minHeight="380.0" minWidth="575.0" prefHeight="380.0" prefWidth="575.0" stylesheets="@../styles/ticketStyles.css" text="Ticket" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
