@@ -101,7 +101,7 @@ public class TicketController implements Initializable {
         });
         // ----- /Initializes categoryList -----
         
-       // ----- Initializes the rest of the ticket data -----
+        // ----- Initializes the rest of the ticket data -----
         if (initTktNo.get() == 0) {
             ArrayList<Ticket> ticketList = loadTickets();
             ticket = ticketList.get(0);  
