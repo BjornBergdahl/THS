@@ -102,10 +102,13 @@ public class TicketController implements Initializable {
         // ----- /Initializes categoryList -----
         
         // ----- Initializes the rest of the ticket data -----
+        // if no-arg constructor has been called and initTktNo not set
         if (initTktNo.get() == 0) {
             ArrayList<Ticket> ticketList = loadTickets();
             ticket = ticketList.get(0);  
         }
+        // If parameter constructor has been called, ticket called from double
+        // click on table
         else {
             ArrayList<Ticket> ticketList = loadAssignedTickets();
             for (int x = 0; x < ticketList.size(); x++) {
@@ -113,21 +116,22 @@ public class TicketController implements Initializable {
                     ticket = ticketList.get(x);
                 }
             }
+            
+            // Selects category
+            categoryList.getSelectionModel().select(ticket.getCategory());
+            
         }
         ArrayList<Comment> comments = ticket.getComments();
         setTicketName(ticket);
         setComments(comments);
         // ----- /Initializes the rest of the ticket data -----
         
+        
         drawTaskUI();
     }
     
     public void setTicketName(Ticket ticket) {
         titledPane.setText(ticket.getName() + " (ticket " + ticket.getTktNo() + ")");
-    }
-    
-    public void setCategories(ObservableList<String> categories) {
-        categoryList.setItems(categories);
     }
 
     public void setComments(ArrayList<Comment> comments) {
