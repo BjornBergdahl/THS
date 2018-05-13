@@ -46,7 +46,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         drawPileTickets();
-        updateTable();
+        updateTable();      // TODO: 
         
         // Sets a doubleclick eventhandler for a row of the table
         table.setRowFactory( tv -> {
