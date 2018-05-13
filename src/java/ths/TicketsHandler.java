@@ -9,14 +9,14 @@ package ths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.ejb.EJB;
+
 
 /**
  *
  * @author Björn
  * @author Andreas
  */
-@EJB
+
 public class TicketsHandler {
 
 
