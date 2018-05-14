@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ths;
+package Beans;
 
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
+import ths.Personnel;
+import ths.ProcessLead;
+import ths.Ticket;
+import ths.TicketsHandler;
 
 
 /**
@@ -17,42 +21,46 @@ import javax.faces.bean.SessionScoped;
  * @author Björn
  */
 @ManagedBean (name = "THSMB" , eager = true)
-@SessionScoped
+@RequestScoped
 public class THSManagedBean {
+               
+   
+        TicketsHandler th = new TicketsHandler();
+        ArrayList<Personnel> personnels = new ArrayList<>();
+        Ticket ticket = new Ticket();
+        Personnel chosenPersonnel = new Personnel();
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        ArrayList<ProcessLead> processLeads = new ArrayList<>();
+        
         
 
         
-   
-        TicketsHandler th = new TicketsHandler();
-        ArrayList<Personnel> personnels;
-        @PostConstruct
-        public void init() {
-            personnels = th.readPersonnel();
-        }
-        
-        Ticket ticket = new Ticket();
-        private Personnel chosenPersonnel = new Personnel();
-        ArrayList<Ticket> tickets = th.readTickets("getAllTickets()");
-        ArrayList<ProcessLead> processLeads = th.readProcessLead();
+
     /**
      * Creates a new instance of THSManagedBean
      */
     public THSManagedBean() {
-        System.out.println("Nice!");
-        
+        init();
+        System.out.println("Nice! Check for personells size below -------------------");
+
+        System.out.println(personnels.size());
     /**
      *
      * @return tickets 
      */
         
     }
-    
+    public void init() {
+        personnels = th.readPersonnel();
+        tickets = th.readTickets("getAllTickets()");
+        processLeads = th.readProcessLead();
+    }
     public ArrayList<Ticket> getTickets()   {
         return tickets;
     }
     
     public ArrayList<String> getPersonnels()  {
-        
+        personnels = th.readPersonnel();
         ArrayList<String> lastNames = new ArrayList<>();
         for (Personnel per : personnels)    {
             lastNames.add(per.getLastName());
@@ -84,7 +92,7 @@ public class THSManagedBean {
      */
     public void setChosenPersonnel(String lastName) {
         System.out.println("--------------"+lastName+"-----------------");
-        //this.chosenPersonnel = chosenPersonnel;
+        this.chosenPersonnel = chosenPersonnel;
     }
     
     

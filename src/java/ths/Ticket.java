@@ -24,6 +24,7 @@ public class Ticket {
     //    Comments and Tasks belonging to the Ticket. 
     private ArrayList<Comment> comments = new ArrayList<>();
     private ArrayList<Task> tasks = new ArrayList<>();
+    DbConnection Connect = new DbConnection();
  
     
 
@@ -56,10 +57,6 @@ public class Ticket {
         this.category = category;
     }
     
-//      public void writeCategory(int tktNo, String category)   {
-//          Ticket ticket = tickets.get(tktNo);
-//          ticket.addCategory(category);
-//      }
     
 //    adds a new comment to ticket comments
     public void setComment(Ticket tkt, String text)    {
@@ -69,25 +66,17 @@ public class Ticket {
         comments.add(comment);
     }
     
-//    public void setTask(Ticket tkt, String name, String text, int timeBudget, int timeSpent)    {
-//        Task task = new Task();
-//        task.setName(name);
-//        task.setText(text);
-//        task.setTaskNo(tkt.getTktNo());
-//        task.setTimeBudgetMinutes(timeBudget);
-//        task.setTimeSpentMinutes(timeSpent);
-//        tasks.add(task);
-//        
-//    }
+
     
     
 //    reads the Comments belonging to instance of Ticket from database
+    
     public void readComments() {
-                
+
         try{
             
-            ResultSet results = DbConnection.runSp("getComments(" + tktNo + ")");
-            
+            ResultSet results = Connect.readSp("getComments(" + this.getTktNo() + ")");
+
             while (results.next())  {
                 Comment comment = new Comment();
                 comment.setCommentNo(results.getInt("commentNo"));
@@ -98,15 +87,36 @@ public class Ticket {
             results.close();
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage( ));
+            System.out.println(e.getMessage());
         }   
     }
+    
+//    public void readComments() {
+//                
+//        try{
+//            
+//            ResultSet results = DbConnection.runSp("getComments(" + tktNo + ")");
+//            
+//            while (results.next())  {
+//                Comment comment = new Comment();
+//                comment.setCommentNo(results.getInt("commentNo"));
+//                comment.setTktNo(results.getInt("tktNoCom"));
+//                comment.setText(results.getString("text"));
+//                comments.add(comment);
+//            }
+//            results.close();
+//        }
+//        catch (SQLException e) {
+//            System.out.println(e.getMessage( ));
+//        }   
+//    }
+    
     //add new comment into database
-    public void addComment (String text)    {
-        String sqlinput = "addComment("+this.tktNo+",'"+text+"')";
+    public void addComment (Comment comment)    {
+        String SQLinput = "addComment("+this.tktNo+",'"+comment.getText()+"')";
         try{
                 
-                DbConnection.runSp(sqlinput);
+                Connect.writeSp(SQLinput);
         }
         catch (SQLException e) {
                 System.out.println(e.getMessage( ));
@@ -118,7 +128,7 @@ public class Ticket {
     public void writeTask (int tskNo, String name, int timeBudget, int timeSpent) { 
       String SQLCommand= "writeTask("+tskNo+", '"+name+"', '"+timeBudget+"', '"+timeSpent+"')";  //silly line '"+ !
         try{
-            DbConnection.runSp(SQLCommand);
+            Connect.writeSp(SQLCommand);
         }
         catch (SQLException e) {
             System.out.println(e.getMessage( ));
@@ -127,7 +137,7 @@ public class Ticket {
     public void addTask (Task task) { //both write and add, used to add new and change existing tasks
         String addCommand= "addTask("+this.tktNo+", '"+task.getName()+"', '"+task.getTimeBudgetMinutes()+"', '"+task.getTimeSpentMinutes()+"')";  //silly line '"+ !
         try{
-            DbConnection.runSp(addCommand);
+            Connect.writeSp(addCommand);
         }
         catch (SQLException e) {
             System.out.println(e.getMessage( ));
@@ -137,7 +147,7 @@ public class Ticket {
     public void deleteAllTasks()  {
         String deleteTasks = "deleteAllTasks("+this.tktNo+")";
                 try{
-            DbConnection.runSp(deleteTasks);
+            Connect.writeSp(deleteTasks);
         }
         catch (SQLException e) {
             System.out.println(e.getMessage( ));
@@ -150,7 +160,7 @@ public class Ticket {
         
         try{
             
-            ResultSet results = DbConnection.runSp("getTasks(" + tktNo + ")");
+            ResultSet results = Connect.readSp("getTasks(" + tktNo + ")");
             
             while (results.next())  {
                 Task task = new Task();

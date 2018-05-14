@@ -307,9 +307,10 @@ public class TicketController implements Initializable {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
         String formatted = df.format(today.getTime());
         System.out.println(formatted);
-        
+        Comment commentToSend = new Comment();
         if (!newComment.equals("")) {
-            ticket.addComment(account + "¤" + formatted + "¤" + newComment);
+            commentToSend.setText(account + "¤" + formatted + "¤" + newComment);
+            ticket.addComment(commentToSend);
         }
         
         // Save category to ticket

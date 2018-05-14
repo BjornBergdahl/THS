@@ -6,9 +6,12 @@
 //BB
 package ths;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -23,42 +26,41 @@ public class TicketsHandler {
     protected static ArrayList<Ticket> tickets = new ArrayList<Ticket>();
     protected static ArrayList<Personnel> personnels = new ArrayList<>();
     protected static ArrayList<ProcessLead> processLeads = new ArrayList<>();
+    DbConnection Connect = new DbConnection();
     
   /**
     * reads String command that defines if all, unassigned or another 
     * selection of tickets with all comments and tasks will be read into tickets
     */
     public ArrayList<Ticket> readTickets(String command) {
-        
         try{
-
-            ResultSet results = DbConnection.runSp(command);
-
-            while (results.next())  {
-                Ticket tkt = new Ticket();
-                tkt.setTktNo(results.getInt("tktNo"));
-                tkt.setPersonellNo(results.getInt("processLeadNo"));
-                tkt.setstaffNo(results.getInt("staffNo"));
-                tkt.setTktName(results.getString("name"));
-                tkt.setStatus(results.getString("status"));
-                tkt.setCategory(results.getString("category"));
-                System.out.println("this effin ticket " + tkt.getTktNo());
-                tkt.readComments();
-                tkt.readTasks();
-                tickets.add(tkt);
-            }
+            ResultSet results = Connect.readSp(command);
+                    
+                while (results.next())  {
+                    Ticket tkt = new Ticket();
+                    tkt.setTktNo(results.getInt("tktNo"));
+                    tkt.setPersonellNo(results.getInt("processLeadNo"));
+                    tkt.setstaffNo(results.getInt("staffNo"));
+                    tkt.setTktName(results.getString("name"));
+                    tkt.setStatus(results.getString("status"));
+                    tkt.setCategory(results.getString("category"));
+                    System.out.println("this effin ticket " + tkt.getTktNo());
+                    tkt.readComments();
+                    tkt.readTasks();
+                    tickets.add(tkt);
+                }
             results.close();
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage( ));
-        }   
-    return tickets;
-    }
-    
+            System.out.println("Failure"+e.getMessage( ));
+        }
+        return tickets;
+    }   
+        
     public ArrayList<Personnel> readPersonnel() {
             try{
 
-                ResultSet results = DbConnection.runSp("getPersonnel");
+                ResultSet results = Connect.readSp("getPersonnel");
 
             while (results.next())  {
                 Personnel peon = new Personnel();
@@ -80,7 +82,7 @@ public class TicketsHandler {
         public ArrayList<ProcessLead> readProcessLead() {
             try{
 
-                ResultSet results = DbConnection.runSp("getProcessLead");
+                ResultSet results = Connect.readSp("getProcessLead");
 
             while (results.next())  {
                 ProcessLead boss = new ProcessLead();
@@ -103,17 +105,15 @@ public class TicketsHandler {
         ArrayList<Task> tasks = tkt.getTasks();
         try{
             String catsql = "setTicketCategory("+tkt.getTktNo()+", '"+tkt.getCategory()+"')";
-            DbConnection.runSp(catsql);
+            Connect.writeSp(catsql);
             String statsql = "setTicketStatus("+tkt.getTktNo()+", '"+tkt.getStatus()+"')";
-            DbConnection.runSp(statsql);
+            Connect.writeSp(statsql);
             //TODO refactor as Tasks below!
             for (Comment comment : comments)    {
-                String comsql = "addComment("+tkt.getTktNo()+", '"+comment.getText()+"')";                     
-                if (!(comment.getCommentNo()>0))  {                                                         //Hade vänt logiken fel, itererade in alla gamla inga nya kommentarer...
-                    DbConnection.runSp(comsql);  
-                }
+                tkt.addComment(comment);
             }
             for (Task task : tasks)    {
+                tkt.deleteAllTasks();
                 tkt.addTask(task);
             }
             

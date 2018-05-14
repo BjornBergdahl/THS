@@ -40,9 +40,8 @@ public class TH {
         
         // Tests th.readTickets() which in turn tests getAllTickets(), getComments() and getTasks();
         TicketsHandler th = new TicketsHandler();
-        // To call unassigned switch string into readTickets
-        ArrayList<Ticket> tkts = th.getTickets();
         th.readTickets("getAllTickets()");
+        ArrayList<Ticket> tkts = th.getTickets();
 
         for (Ticket tktit : tkts){
             System.out.println("\n----- Ticket -----");
