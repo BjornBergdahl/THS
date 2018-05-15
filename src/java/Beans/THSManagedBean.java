@@ -5,8 +5,10 @@
  */
 package Beans;
 
+
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
+import javax.ejb.Stateful;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -22,6 +24,7 @@ import ths.TicketsHandler;
  */
 @ManagedBean (name = "THSMB" , eager = true)
 @RequestScoped
+@Stateful(passivationCapable=false)
 public class THSManagedBean {
                
    
@@ -31,6 +34,16 @@ public class THSManagedBean {
         Personnel chosenPersonnel = new Personnel();
         ArrayList<Ticket> tickets = new ArrayList<>();
         ArrayList<ProcessLead> processLeads = new ArrayList<>();
+        int personnelNo;
+
+    public int getPersonnelNo() {
+        return personnelNo;
+    }
+
+    public void setPersonnelNo(int pNo) {
+        this.personnelNo = pNo;
+        System.out.println("Hej från inläsningen");
+    }
         
         
 
@@ -51,22 +64,25 @@ public class THSManagedBean {
         
     }
     public void init() {
-        personnels = th.readPersonnel();
+   
         tickets = th.readTickets("getAllTickets()");
-        processLeads = th.readProcessLead();
+//        processLeads = th.readProcessLead();
+        //TODO: Temporary
+        ticket = tickets.get(0);
     }
     public ArrayList<Ticket> getTickets()   {
         return tickets;
     }
     
-    public ArrayList<String> getPersonnels()  {
-        personnels = th.readPersonnel();
-        ArrayList<String> lastNames = new ArrayList<>();
-        for (Personnel per : personnels)    {
-            lastNames.add(per.getLastName());
-            
-        }
-        return lastNames;
+    public ArrayList<Personnel> getPersonnels()  {
+        //empty th personnel
+        th.setPersonnels(new ArrayList<>());
+        //read th personnel
+        th.readPersonnel();
+        //get th personnel
+        personnels = th.getPersonnels();
+        
+        return personnels;
     }
     
     /**
@@ -90,9 +106,14 @@ public class THSManagedBean {
     /**
      * @param chosenPersonnel the chosenPersonnel to set
      */
-    public void setChosenPersonnel(String lastName) {
-        System.out.println("--------------"+lastName+"-----------------");
-        this.chosenPersonnel = chosenPersonnel;
+    public void setChosenPersonnel(int pNo) {
+
+        personnelNo = pNo;
+        System.out.println("Hej från inläsningen");
+    }
+    public void buttonTest(){
+        System.out.println("Buttonclick");
+        System.out.println("Hej"+personnelNo);
     }
     
     

@@ -25,6 +25,14 @@ public class TicketsHandler {
 
     protected static ArrayList<Ticket> tickets = new ArrayList<Ticket>();
     protected static ArrayList<Personnel> personnels = new ArrayList<>();
+
+    public ArrayList<Personnel> getPersonnels() {
+        return personnels;
+    }
+
+    public void setPersonnels(ArrayList<Personnel> personnels) {
+        TicketsHandler.personnels = personnels;
+    }
     protected static ArrayList<ProcessLead> processLeads = new ArrayList<>();
     DbConnection Connect = new DbConnection();
     
