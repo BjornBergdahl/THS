@@ -32,10 +32,14 @@
                         <div class="row">
 
                                 <h:form>
-                                    <h:outputLabel>Assign to Personnel</h:outputLabel>
-                                    <h:selectOneMenu value="#{THSMB.chosenPersonnel}" >
-                                        <f:selectItems value="#{THSMB.personnels}" />
+                                    <br></br>
+                                    <h:outputLabel>Assign to Personnel </h:outputLabel>
+                                    <h:selectOneMenu value="#{THSMB.personnelNo}" >
+                                        <f:selectItems value="#{THSMB.personnels}" var="personnel" 
+                                        itemLabel="#{personnel.lastName}" itemValue="#{personnel.staffNo}"/>
                                     </h:selectOneMenu>  
+                                    <br></br>
+                                    <h:commandButton value="Assign" onclick="#{THSMB.buttonTest()}" />
                                 </h:form>    
 
                             <div class="col-lg-6 p-4">
@@ -45,9 +49,7 @@
                             <div class="row">
                                 <textarea name="name" rows="8" cols="80"></textarea>
                             </div>
-                            <div class="row justify-content-end">
-                                <button type="button" class="btn btn-secondary">Assign</button>
-                            </div>
+
 
                             </div>
                         </div>
