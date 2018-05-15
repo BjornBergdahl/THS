@@ -108,7 +108,7 @@ public class TicketsHandler {
             Connect.writeSp(catsql);
             String statsql = "setTicketStatus("+tkt.getTktNo()+", '"+tkt.getStatus()+"')";
             Connect.writeSp(statsql);
-            //TODO refactor as Tasks below!
+            
             for (Comment comment : comments)    {
                 tkt.addComment(comment);
             }
