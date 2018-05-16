@@ -6,6 +6,7 @@
 package Beans;
 
 
+import TicketModel.Comment;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
@@ -14,8 +15,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import TicketModel.Personnel;
 import TicketModel.ProcessLead;
+import TicketModel.Task;
 import TicketModel.Ticket;
 import TicketModel.TicketsHandler;
+import java.util.Iterator;
 
 
 /**
@@ -31,11 +34,21 @@ public class THSManagedBean {
     TicketsHandler th = new TicketsHandler();
     ArrayList<Personnel> personnels = new ArrayList<>();
     Ticket ticket = new Ticket();
-    Personnel chosenPersonnel = new Personnel();
+    Comment comment = new Comment();
+    Task task = new Task();
+    private Personnel chosenPersonnel = new Personnel();
     ArrayList<Ticket> tickets = new ArrayList<>();
     ArrayList<ProcessLead> processLeads = new ArrayList<>();
+    ArrayList<Task> tasks = new ArrayList<>();
+    ArrayList<Comment> comments = new ArrayList<>();
     private int personnelNo;
+    private String commentString;
+    TaskBean taskControll = new TaskBean();
+
+
   
+
+
     /**
      * Creates a new instance of THSManagedBean
      */
@@ -44,11 +57,12 @@ public class THSManagedBean {
     }
     
     public void init() {
-        tickets = th.readTickets("getAssignedTickets");
-//        processLeads = th.readProcessLead();
-        //TODO: Temporary
+        tickets = th.readTickets("getAssignedTickets()");
+        tickets = getTickets();
         ticket = tickets.get(0);
-    }
+        commentString = createCommentString(ticket.getComments());
+        personnels = getPersonnels();
+        }
     
     public void ticketAssign(Ticket ticket)    {
         ticket.setStatus("WORKER");
@@ -59,8 +73,26 @@ public class THSManagedBean {
     
     public ArrayList<Ticket> getTickets()   {
         tickets = th.getTickets();
-        
+        tickets=sortedTickets(tickets);
+        System.out.println("----------------------------"+tickets.size());
         return tickets;
+    }
+    
+    public ArrayList<Ticket> sortedTickets(ArrayList<Ticket> tick) {
+    System.out.println("Before TsortTicket: "+tick.size());
+    Iterator<Ticket> iter = tick.iterator();
+
+    while (iter.hasNext()) {
+        Ticket t = iter.next();
+
+        if (!t.getCategory().equals("NETWORK")){
+            iter.remove();
+        }
+    }
+
+    System.out.println("After Tsort: "+tick.size());
+
+    return tick;
     }
     
     public ArrayList<Personnel> getPersonnels()  {
@@ -70,10 +102,52 @@ public class THSManagedBean {
         th.readPersonnel();
         //get th personnel
         personnels = th.getPersonnels();
-        
+        personnels = sortedPersonnel(ticket.getCategory(), personnels);
+        setChosenPersonnel(personnels.get(0));
         return personnels;
     }
     
+    public ArrayList<Personnel> sortedPersonnel(String cat, ArrayList<Personnel> pers) {
+        System.out.println("Before sort: "+pers.size());
+        Iterator<Personnel> iter = pers.iterator();
+
+        while (iter.hasNext()) {
+            Personnel p = iter.next();
+
+            if (!p.getCompetence().equals(cat)){
+                iter.remove();
+            }
+        }
+
+        System.out.println("After sort: "+pers.size());
+        
+        return pers;
+    }
+    
+    
+    
+    public String getCommentString() {
+        
+        return commentString;
+    }
+
+
+    
+
+    public String createCommentString(ArrayList<Comment> comments) {
+        String text = "";
+        for (Comment comment : comments) {
+            
+            String seperator = "¤";
+            String allText = comment.getText();
+            String name = allText.split(seperator)[0];
+            String date = allText.split(seperator)[1];
+            String commentText = allText.split(seperator)[2];
+            
+            text = date + ": " + name + "\n" + commentText + "\n\n" +text;
+            }
+        return text;
+    }  
     /**
      *
      * @return list of ProcessLeaders
@@ -89,6 +163,7 @@ public class THSManagedBean {
      * @return the chosenPersonnel
      */
     public Personnel getChosenPersonnel() {
+        
         return chosenPersonnel;
     }
 
@@ -96,6 +171,7 @@ public class THSManagedBean {
      * @param chosenPersonnel the chosenPersonnel to set
      */
     public void setChosenPersonnel(Personnel per) {
+        
         this.chosenPersonnel = per;
     }    
     public void buttonAssign(){
@@ -127,6 +203,13 @@ public class THSManagedBean {
 
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
+    }
+    public TaskBean getTaskcontroll() {
+        return taskControll;
+    }
+
+    public void setTaskcontroll(TaskBean taskcontroll) {
+        this.taskControll = taskcontroll;
     }
 
 }

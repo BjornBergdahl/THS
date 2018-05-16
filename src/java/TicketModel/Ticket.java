@@ -63,7 +63,7 @@ public class Ticket {
         Comment comment = new Comment();
         comment.setTktNo(tkt.getTktNo());
         comment.setText(text);
-        comments.add(comment);
+        getComments().add(comment);
     }
     
 
@@ -82,7 +82,7 @@ public class Ticket {
                 comment.setCommentNo(results.getInt("commentNo"));
                 comment.setTktNo(results.getInt("tktNoCom"));
                 comment.setText(results.getString("text"));
-                comments.add(comment);
+                getComments().add(comment);
             }
             results.close();
         }

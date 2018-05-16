@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
@@ -10,18 +11,23 @@
     </h:head>
     <h:body>
         <f:view>
+            
             <nav class="navbar navbar-expand-md navbar-light bg-light">
                 <a class="navbar-brand" href="#"><i class="fas fa-folder-open"></i>TicketHandler</a>
 
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                      <li class="nav-item active">
-                        <a class="nav-link" href="#">Backlog<span class="sr-only">(current)</span></a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">My Tickets</a>
-                      </li>
+                        <li class="nav-item active">
+                          <a class="nav-link" href="#">Backlog<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">My Tickets</a>
+                        </li>
+                        
+                        <li>    
+                            <h:outputText value="Welcome #{THSMB.chosenPersonnel.lastName}, #{THSMB.chosenPersonnel.firstName}, authorized for #{THSMB.chosenPersonnel.competence}" />
+                        </li>  
                     </ul>
                 </div>
             </nav>
@@ -38,117 +44,27 @@
                                     <h:outputLabel>Assign to Personnel </h:outputLabel>
                                     <h:selectOneMenu value="#{THSMB.personnelNo}" >
                                         <f:selectItems value="#{THSMB.personnels}" var="personnel" 
-                                        itemLabel="#{personnel.lastName}" itemValue="#{personnel.staffNo}"/>
+                                                itemLabel="#{personnel.lastName}, #{personnel.firstName}" itemValue="#{personnel.staffNo}"/>
                                     </h:selectOneMenu>  
                                     <br></br>
                                     <h:commandButton value="Assign" onclick="#{THSMB.buttonAssign()}" action="index" />
+                                    <div>
+                                    <h:outputText value="#{THSMB.commentString}" style="white-space: pre-wrap"/>
+                                    </div>
+                                
                                 </h:form>    
 
-                            <div class="col-lg-6 p-4">
-                                <div class="row">
-                                    <span class="invisible">Empty row</span>
-                                </div>
-                            <div class="row">
-                                <textarea name="name" rows="8" cols="80"></textarea>
-                            </div>
+                           
 
-
-                            </div>
                         </div>
+
+
+                            
                     </div>
-                    <div class="container border border-secondary rounded col-md-5 m-1">
-                        <div class="row">
-                            <form class="col-lg-6 p-4">
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Assign to personnel2</label>
-                                        <select class="form-control" id="exampleFormControlSelect1">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                </div>
-                            </form>
-                    <div class="col-lg-6 p-4">
-                      <div class="row">
-                        <span class="invisible">Empty row</span>
-                      </div>
-                      <div class="row">
-                          <textarea name="name" rows="8" cols="80"></textarea>
-                      </div>
-                      <div class="row justify-content-end">
-                          <button type="button" class="btn btn-secondary">Assign</button>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-
-
-          </div>
-          <div class="row">
-            <div class="container border border-secondary rounded col-md-5 m-1">
-              <div class="row">
-                <form class="col-lg-6 p-4">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Assign to personnel1</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                </form>
-                <div class="col-lg-6 p-4">
-                  <div class="row">
-                    <span class="invisible">Empty row</span>
-                  </div>
-                  <div class="row">
-                      <textarea name="name" rows="8" cols="80"></textarea>
-                  </div>
-                  <div class="row justify-content-end">
-                      <button type="button" class="btn btn-secondary">Assign</button>
-                  </div>
-
-                </div>
-              </div>
+                </div>    
             </div>
-            <div class="container border border-secondary rounded col-md-5 m-1">
-              <div class="row">
-                <form class="col-lg-6 p-4">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Assign to personnel2</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                </form>
-                <div class="col-lg-6 p-4">
-                  <div class="row">
-                    <span class="invisible">Empty row</span>
-                  </div>
-                  <div class="row">
-                      <textarea name="name" rows="8" cols="80"></textarea>
-                  </div>
-                  <div class="row justify-content-end">
-                      <button type="button" class="btn btn-secondary">Assign</button>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-
-        </div>
+                    
+        
 
 
 
