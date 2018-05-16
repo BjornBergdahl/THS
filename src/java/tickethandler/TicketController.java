@@ -124,7 +124,7 @@ public class TicketController implements Initializable {
         }
         ArrayList<Comment> comments = ticket.getComments();
         setTicketName(ticket);
-        setComments(comments);
+        readCommentArea.setText(getCommentString(comments));
         // ----- /Initializes the rest of the ticket data -----
         
         
@@ -135,7 +135,7 @@ public class TicketController implements Initializable {
         titledPane.setText(ticket.getName() + " (ticket " + ticket.getTktNo() + ")");
     }
 
-    public void setComments(ArrayList<Comment> comments) {
+    public String getCommentString(ArrayList<Comment> comments) {
         String text = "";
         for (Comment comment : comments) {
             
@@ -147,8 +147,7 @@ public class TicketController implements Initializable {
             
             text = date + ": " + name + "\n" + commentText + "\n\n" + text;
         }
-        // text;
-        readCommentArea.setText(text);
+        return text;
     }
     
     // TODO: make this general in the initialize method, load tasks from db
