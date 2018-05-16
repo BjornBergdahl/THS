@@ -136,8 +136,8 @@ public class TicketController implements Initializable {
     }
 
     public void setComments(ArrayList<Comment> comments) {
+        String text = "";
         for (Comment comment : comments) {
-            String previousText = readCommentArea.getText();
             
             String seperator = "¤";
             String allText = comment.getText();
@@ -145,12 +145,10 @@ public class TicketController implements Initializable {
             String date = allText.split(seperator)[1];
             String commentText = allText.split(seperator)[2];
             
-            readCommentArea.setText(date + ": " + name
-                    + "\n"
-                    + commentText
-                    + "\n\n"
-                    + previousText);
+            text = date + ": " + name + "\n" + commentText + "\n\n" + text;
         }
+        // text;
+        readCommentArea.setText(text);
     }
     
     // TODO: make this general in the initialize method, load tasks from db
