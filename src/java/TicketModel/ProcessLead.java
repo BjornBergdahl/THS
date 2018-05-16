@@ -3,23 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ths;
+package TicketModel;
 
 /**
  *
  * @author Björn
  */
-public class Personnel {
-    private int staffNo;
+public class ProcessLead {
+
+
+    private int processLeadNo;
     private String firstName;
     private String lastName;
-    private String competence;
 
     /**
-     * @return the staffNo
+     * @return the processLeadNo
      */
-    public int getStaffNo() {
-        return staffNo;
+    public int getProcessLeadNo() {
+        return processLeadNo;
     }
 
     /**
@@ -35,26 +36,11 @@ public class Personnel {
     public String getLastName() {
         return lastName;
     }
-
-    /**
-     * @return the competence
+        /**
+     * @param processLeadNo the processLeadNo to set
      */
-    public String getCompetence() {
-        return competence;
-    }
-
-    /**
-     * @param competence the competence to set
-     */
-    public void setCompetence(String competence) {
-        this.competence = competence;
-    }
-
-    /**
-     * @param staffNo the staffNo to set
-     */
-    public void setStaffNo(int staffNo) {
-        this.staffNo = staffNo;
+    public void setProcessLeadNo(int processLeadNo) {
+        this.processLeadNo = processLeadNo;
     }
 
     /**
@@ -70,5 +56,4 @@ public class Personnel {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
 }

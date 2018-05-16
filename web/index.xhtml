@@ -29,6 +29,8 @@
             <div class="container">
                 <div class="row">
                     <div class="container border border-secondary rounded col-md-5 m-1">
+                        <h2>Ticket</h2>
+                        <h2>NO: #{THSMB.ticket.tktNo} Name: #{THSMB.ticket.name}</h2>
                         <div class="row">
 
                                 <h:form>
@@ -39,7 +41,7 @@
                                         itemLabel="#{personnel.lastName}" itemValue="#{personnel.staffNo}"/>
                                     </h:selectOneMenu>  
                                     <br></br>
-                                    <h:commandButton value="Assign" onclick="#{THSMB.buttonTest()}" />
+                                    <h:commandButton value="Assign" onclick="#{THSMB.buttonAssign()}" action="index" />
                                 </h:form>    
 
                             <div class="col-lg-6 p-4">

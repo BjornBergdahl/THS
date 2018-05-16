@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 //BB
-package ths;
+package TicketModel;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -116,7 +116,10 @@ public class TicketsHandler {
             Connect.writeSp(catsql);
             String statsql = "setTicketStatus("+tkt.getTktNo()+", '"+tkt.getStatus()+"')";
             Connect.writeSp(statsql);
-            
+            String persNosql = "setPersNo("+tkt.getTktNo()+", '"+tkt.getPersonellNo()+"')";
+            Connect.writeSp(persNosql);
+            String processLeadNosql = "setProcessLeadNo("+tkt.getTktNo()+", '"+tkt.getProcessLeadNo()+"')";
+            Connect.writeSp(processLeadNosql);
             for (Comment comment : comments)    {
                 tkt.addComment(comment);
             }

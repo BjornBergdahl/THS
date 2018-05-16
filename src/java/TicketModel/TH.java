@@ -1,4 +1,4 @@
-package ths;
+package TicketModel;
 
 import java.util.ArrayList;
 

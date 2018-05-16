@@ -1,4 +1,4 @@
-package ths;
+package TicketModel;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

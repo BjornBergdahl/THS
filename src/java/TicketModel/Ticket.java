@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ths;
+package TicketModel;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ public class Ticket {
     private int personellNo;
     private String name;
     private int tktNo; 
-    private String status; 
-    private String category;
+    private String status; //UNASSIGNED, ASSIGNED, WORKER, DONE, ATTESTED
+    private String category; //NETWORK, APPLICATION, SECURITY, USER
     //    Comments and Tasks belonging to the Ticket. 
     private ArrayList<Comment> comments = new ArrayList<>();
     private ArrayList<Task> tasks = new ArrayList<>();

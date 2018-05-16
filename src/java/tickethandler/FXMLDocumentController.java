@@ -28,8 +28,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import ths.Ticket;
-import ths.TicketsHandler;
+import TicketModel.Ticket;
+import TicketModel.TicketsHandler;
 
 /**
  *

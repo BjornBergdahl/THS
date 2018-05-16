@@ -39,10 +39,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import ths.Comment;
-import ths.Task;
-import ths.Ticket;
-import ths.TicketsHandler;
+import TicketModel.Comment;
+import TicketModel.Task;
+import TicketModel.Ticket;
+import TicketModel.TicketsHandler;
 
 /**
  *
