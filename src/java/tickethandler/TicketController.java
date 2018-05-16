@@ -73,8 +73,9 @@ public class TicketController implements Initializable {
     
     Ticket ticket;  // The ticket on top of the pile that is going to be sent to db
     
+    // initTktNo is 0 if ticket is loaded from first view,
+    // initTktNo gets a value if a ticket is opened from table in second view
     private IntegerProperty initTktNo = new SimpleIntegerProperty();
-    // int initTktNo = 0;
     
     // Default constructor, DO NOT REMOVE!
     public TicketController() {
@@ -282,17 +283,26 @@ public class TicketController implements Initializable {
         double offsetX = titledPane.getWidth() * 2;
         int duration = 1500;
         
-        TranslateTransition tt = new TranslateTransition(Duration.millis(duration), titledPane);
-        
         sendTicketToDb();
+       
+        // if in first view "New Tickets", update window
+        if (initTktNo.get() == 0) {
+            TranslateTransition tt = new TranslateTransition(Duration.millis(duration), titledPane);
         
-        tt.setOnFinished((e) -> {  
-            updateNewTicketsView();
-        });
-        tt.setByX(-offsetX);
-        tt.setAutoReverse(true);
-        tt.setCycleCount(1);
-        tt.play();
+            tt.setOnFinished((e) -> {  
+                updateNewTicketsView();
+            });
+            tt.setByX(-offsetX);
+            tt.setAutoReverse(true);
+            tt.setCycleCount(1);
+            tt.play();  
+        }
+        // else if in second view "In progress/assigned tickets", close window
+        else {
+            Stage stage = (Stage)(titledPane.getScene().getWindow());
+            stage.close();
+        }
+
     }
     
     // Sends the assigned ticket to database
