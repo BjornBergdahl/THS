@@ -22,11 +22,11 @@
                           <a class="nav-link" href="#">Backlog<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">My Tickets</a>
+                          <!--<a class="nav-link" href="task.xhtml">My Tickets</a>-->
                         </li>
                         
-                        <li>    
-                            <h:outputText value="Welcome #{THSMB.chosenPersonnel.lastName}, #{THSMB.chosenPersonnel.firstName}, authorized for #{THSMB.chosenPersonnel.competence}" />
+                        <li class="nav-item">    
+                            <h:outputText styleClass="navbar-text" value="Welcome #{THSMB.chosenPersonnel.lastName}, #{THSMB.chosenPersonnel.firstName}, authorized for #{THSMB.chosenPersonnel.competence}" />
                         </li>  
                     </ul>
                 </div>
@@ -41,14 +41,14 @@
 
                                 <h:form>
                                     <br></br>
-                                    <h:outputLabel>Assign to Personnel </h:outputLabel>
-                                    <h:selectOneMenu value="#{THSMB.personnelNo}" >
+                                    <h:outputLabel styleClass="m-1">Assign to Personnel: </h:outputLabel>
+                                    <h:selectOneMenu styleClass="m-1" value="#{THSMB.personnelNo}" >
                                         <f:selectItems value="#{THSMB.personnels}" var="personnel" 
                                                 itemLabel="#{personnel.lastName}, #{personnel.firstName}" itemValue="#{personnel.staffNo}"/>
                                     </h:selectOneMenu>  
                                     <br></br>
-                                    <h:commandButton value="Assign" onclick="#{THSMB.buttonAssign()}" action="index" />
-                                    <div>
+                                    <h:commandButton styleClass="m-1" value="Assign" onclick="#{THSMB.buttonAssign()}" action="index" />
+                                    <div class="m-1">
                                     <h:outputText value="#{THSMB.commentString}" style="white-space: pre-wrap"/>
                                     </div>
                                 

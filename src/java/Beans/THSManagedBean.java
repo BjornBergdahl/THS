@@ -37,13 +37,38 @@ public class THSManagedBean {
     Comment comment = new Comment();
     Task task = new Task();
     private Personnel chosenPersonnel = new Personnel();
+    private Ticket myTicket = new Ticket();
     ArrayList<Ticket> tickets = new ArrayList<>();
     ArrayList<ProcessLead> processLeads = new ArrayList<>();
     ArrayList<Task> tasks = new ArrayList<>();
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
+    public Ticket getMyTicket() {
+        return myTicket;
+    }
+
+    public void setMyTicket(Ticket myTicket) {
+        this.myTicket = myTicket;
+    }
+
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
     ArrayList<Comment> comments = new ArrayList<>();
     private int personnelNo;
     private String commentString;
-    TaskBean taskControll = new TaskBean();
+    
 
 
   
@@ -59,10 +84,43 @@ public class THSManagedBean {
     public void init() {
         tickets = th.readTickets("getAssignedTickets()");
         tickets = getTickets();
-        ticket = tickets.get(0);
+        if (tickets.size() >0){ 
+            ticket = tickets.get(0);
+        } else {ticket = defaultTicket();}
         commentString = createCommentString(ticket.getComments());
         personnels = getPersonnels();
+        tasks = ticket.getTasks();
+    }
+    
+    public Ticket myTicket(){
+        Ticket myTkt = defaultTicket();
+        for (Ticket tkt : tickets){
+            if (tkt.getPersonellNo()==chosenPersonnel.getStaffNo() ){
+                myTkt=tkt;
+            }
+            
+        } 
+        return myTkt;
+    }
+    
+    
+    public Ticket checkTicket()  {
+        ticket = getTicket();
+        if (ticket.getName().equals(""))    {
+            ticket = defaultTicket();
         }
+            
+        
+        return ticket;
+    }
+    
+    public Ticket defaultTicket()   {
+        ticket.setTktName("No tickets assigned");
+        ticket.setCategory("NONE");
+        ticket.setStatus("Nothing assigned");
+        ticket.setTktNo(999);
+        return ticket;
+    }
     
     public void ticketAssign(Ticket ticket)    {
         ticket.setStatus("WORKER");
@@ -104,7 +162,22 @@ public class THSManagedBean {
         personnels = th.getPersonnels();
         personnels = sortedPersonnel(ticket.getCategory(), personnels);
         setChosenPersonnel(personnels.get(0));
+        personnels = availablePersonnels(personnels);   //checks that noone gets two active tickets
         return personnels;
+    }
+    
+    public ArrayList<Personnel> availablePersonnels(ArrayList<Personnel> pers)   {
+        Iterator<Personnel> iter = pers.iterator();
+        while (iter.hasNext()) {
+            Personnel p = iter.next();
+            for (Ticket tick : tickets) {
+                if ((tick.getPersonellNo() == p.getStaffNo())&& !(tick.getStatus().equals("DONE") || (tick.getStatus().equals("ATTESTED"))))   {
+                    iter.remove();
+                }
+            }
+        }
+        
+        return pers;
     }
     
     public ArrayList<Personnel> sortedPersonnel(String cat, ArrayList<Personnel> pers) {
@@ -204,12 +277,6 @@ public class THSManagedBean {
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
     }
-    public TaskBean getTaskcontroll() {
-        return taskControll;
-    }
 
-    public void setTaskcontroll(TaskBean taskcontroll) {
-        this.taskControll = taskcontroll;
-    }
 
 }
