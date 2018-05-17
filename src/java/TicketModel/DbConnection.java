@@ -22,8 +22,8 @@ import java.util.logging.Logger;
 public class DbConnection {
     public static String HOST = "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false";
     public static String USERNAME = "root";
-    // public static String PASSWORD = "Remington870E";
-    public static String PASSWORD = "meiofasknasmisse123";
+     public static String PASSWORD = "Remington870E";
+//    public static String PASSWORD = "meiofasknasmisse123";
     private static Connection con;
        
     public void dbConnect() throws SQLException, ClassNotFoundException {

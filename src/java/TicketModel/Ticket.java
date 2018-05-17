@@ -45,8 +45,8 @@ public class Ticket {
     }
 
 //sets value in instance
-    public void setstaffNo(int sNo) {
-        this.processLeadNo = sNo;
+    public void setProcessLeadNo(int pLNo) {
+        this.processLeadNo = pLNo;
     }
 //sets value in instance
     public void setStatus(String status) {

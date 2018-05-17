@@ -47,8 +47,8 @@ public class TicketsHandler {
                 while (results.next())  {
                     Ticket tkt = new Ticket();
                     tkt.setTktNo(results.getInt("tktNo"));
-                    tkt.setPersonellNo(results.getInt("processLeadNo"));
-                    tkt.setstaffNo(results.getInt("staffNo"));
+                    tkt.setPersonellNo(results.getInt("staffNo"));
+                    tkt.setProcessLeadNo(results.getInt("processLeadNo"));
                     tkt.setTktName(results.getString("name"));
                     tkt.setStatus(results.getString("status"));
                     tkt.setCategory(results.getString("category"));
