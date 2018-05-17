@@ -48,9 +48,10 @@ public class FXMLDocumentController implements Initializable {
         drawPileTickets();
         updateTable();      // TODO: 
         
-        // Sets a doubleclick eventhandler for a row of the table
+        // Sets a RowFactory with Tickets to the TableView
         table.setRowFactory( tv -> {
         TableRow<Ticket> row = new TableRow<>();
+        // Sets a doubleclick eventhandler for a row of the table
         row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Ticket ticket = row.getItem();
@@ -118,7 +119,7 @@ public class FXMLDocumentController implements Initializable {
         
         TicketsHandler th = new TicketsHandler();
         th.emptyTickets();
-        th.readTickets("getAssignedTickets()");   
+        th.readTickets("getNotUnassignedTickets()");   
         ObservableList assignedTickets = FXCollections.observableArrayList(th.getTickets());
         
         // table.clear();

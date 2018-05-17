@@ -39,7 +39,7 @@
                             <TableColumn prefWidth="100.0" text="Process Lead No">
                               <cellValueFactory><PropertyValueFactory property="processLeadNo" /></cellValueFactory>
                             </TableColumn>
-                            <TableColumn prefWidth="100.0" text="Personel No">
+                            <TableColumn prefWidth="100.0" text="Personell No">
                               <cellValueFactory><PropertyValueFactory property="personellNo" /></cellValueFactory>
                             </TableColumn>
                             <TableColumn prefWidth="100.0" text="Status">
