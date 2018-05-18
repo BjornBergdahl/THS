@@ -4,13 +4,13 @@ A prototype Issue Tracking System made for a university assignment in [Software 
 
 The system has two views, one for a Process Leader who assigns "tickets" with issues to teams, a desktop application written in JavaFX. 
 
-[Image with JavaFX view]
+[Table Handling System JavaFX view]
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 The other view serves team members and is accessed via web browser, this part is written in JSF. A team member assigns a ticket to the person most suited to handle the ticket in the team.
 
-[Image with JSF view]
-
-
+[Tabe Handling System JSF view]
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 ## Prerequisites and Installing
 
@@ -46,7 +46,7 @@ We have encountered severe problems in our JSF ManagedBean beacuase of bad desig
 ### JavaFX Issues
 We were unable to implement some late functionality and finishing touches in the JavaFX view, but the program can mostly be used as intended and is not too far from a fully stable release.
 * Tasks are not loaded when viewing a ticket. Hotfix needed.
-* Bug: Tickets marked as "Working" cannot be opened. Hotfix needed.
+* Bug: Tickets marked as "WORKING" cannot be opened. Hotfix needed.
 * Some calls should be made to refresh the data at a few points in the program. We have prepared for an observable pattern against the database, but have not implemented this yet.
 * Process Leader ID is hard-coded into the application for demonstration purposes, this should be generalised.
 * Functionality for Process Leader to attest a ticket that has been marked as "DONE" is not yet implemented.
@@ -59,7 +59,7 @@ We were unable to implement some late functionality and finishing touches in the
 
 ## License and Contributing
 
-Now, when we have turned in the project, we grant other rights for people for further development as per below.
+Now, when we have turned in the project, we grant some rights to people for further development as per below.
 
 The [MIT License](https://opensource.org/licenses/MIT)
 
