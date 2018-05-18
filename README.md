@@ -4,13 +4,13 @@ A prototype Issue Tracking System made for a university assignment in [Software 
 
 The system has two views, one for a Process Leader who assigns "tickets" with issues to teams, a desktop application written in JavaFX. 
 
-[Table Handling System JavaFX view]
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/BjornBergdahl/THS/tree/master/readme_images/PL_1.png "New Tickets view of JavaFX Application")
+
+![alt text](https://github.com/BjornBergdahl/THS/tree/master/readme_images/PL_2.png "Supervise tickets view of JavaFX Application")
 
 The other view serves team members and is accessed via web browser, this part is written in JSF. A team member assigns a ticket to the person most suited to handle the ticket in the team.
 
-[Tabe Handling System JSF view]
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/BjornBergdahl/THS/tree/master/readme_images/SP_1 "New Tickets view of JavaFX Application")
 
 ## Prerequisites and Installing
 
