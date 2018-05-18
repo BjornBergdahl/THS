@@ -12,6 +12,9 @@ The other view serves team members and is accessed via web browser, this part is
 
 ## Prerequisites and Installing
 
+If you use the same tools as us (below), set up your database and Tomcat/Glassfish server correctly you should be able to get the project running. Although, make sure database passwords and addresses are correct for your setup. 
+
+Also, initialize the /databas/THSDB.mwb script which creates the model, then fill the model with the test data in /databas/testdata and load the stored procedures in /databas/storedProcedures/ to your database.
 
 ## Built With
 * JAVA 8.x
