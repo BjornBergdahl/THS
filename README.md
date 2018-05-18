@@ -1,12 +1,27 @@
 # Ticket Handling System (THS)
 
-Description...
+A prototype Issue Tracking System made for a university assignment in [Software Development with Java II](https://www.ltu.se/edu/course/D00/D0024E/D0024E-Programutveckling-med-Java-II-1.161024?l=en) at Luleå University of Technology.
+
+The system has two views, one for a Process Leader who assigns "tickets" with issues to teams, a desktop application written in JavaFX. 
+
+[Image with JavaFX view]
+
+The other view serves team members and is accessed via web browser, this part is written in JSF. A team member assigns a ticket to the person most suited to handle the ticket in the team.
+
+[Image with JSF view]
+
+
 
 ## Prerequisites and Installing
 
 
 ## Built With
-NetBeans 8.x
+* JAVA 8.x
+* NetBeans 8.x
+* MySQL and MySQL Workbench
+* Tomcat or Glassfish
+* JavaEE
+* JavaFX
 
 ## Known Issues
 
@@ -29,9 +44,29 @@ We have encountered severe problems in our JSF ManagedBean beacuase of bad desig
 * The second view needed its own Bean-class but the first issue in this list made this complicated and the working version of task.xhtml had functions deviating from the expected such as unregulated stepping forward in the ticketslist and showing the wrong tasks on reload. 
 
 ### JavaFX Issues
+We were unable to implement some late functionality and finishing touches in the JavaFX view, but the program can mostly be used as intended and is not too far from a fully stable release.
+* Tasks are not loaded when viewing a ticket. Hotfix needed.
+* Bug: Tickets marked as "Working" cannot be opened. Hotfix needed.
+* Some calls should be made to refresh the data at a few points in the program. We have prepared for an observable pattern against the database, but have not implemented this yet.
+* Process Leader ID is hard-coded into the application for demonstration purposes, this should be generalised.
+* Functionality for Process Leader to attest a ticket that has been marked as "DONE" is not yet implemented.
+* Although we believe the code is of quality, some of it is bloaty and should be refactored. 
 
 ## Authors
-Björn Bergdahl
-Andreas Kuoppa
+[Björn Bergdahl](https://github.com/BjornBergdahl)
+
+[Andreas Kuoppa](https://github.com/Acoped)
 
 ## License and Contributing
+
+Now, when we have turned in the project, we grant other rights for people for further development as per below.
+
+The [MIT License](https://opensource.org/licenses/MIT)
+
+Copyright 2018 Björn Bergdahl and Andreas Kuoppa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
