@@ -1,0 +1,17 @@
+Stored procedures needed
+
+getAllTickets()                                                                     X
+getUnassignedTickets()                                                              X
+getComments(tktNo)                                                                  X
+getTasks(tktNo)                                                                     X
+
+
+addComment(tktNo, text)                                                             X
+addTask(tktNoTsk, name, text, timeBudgetMinutes, timeSpentMinutes)                  X
+
+
+setTask(tskNo, tktNoTsk, name, text, timeBudgetMinutes, timeSpentMinutes)               // Avvaktar på denna... man ska inte uppdatera alla attributen samtidigt väl?... Ett åt gången?
+setTicketCategory(tktNo, CATEGORY)                                                  X
+
+
+showSuperviseList
